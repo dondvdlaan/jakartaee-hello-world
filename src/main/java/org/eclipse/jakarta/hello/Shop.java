@@ -26,11 +26,22 @@ public class Shop implements Serializable {
 
     // Getters & Setters
     public List<Artikel> getSortiment() {
-        
+
+        // Verknüpfung mit Persistence Unit
+        EntityManagerFactory emf =
+                Persistence.createEntityManagerFactory("testPU");
+        EntityManager em = emf.createEntityManager();
+
         Query q = em.createQuery("SELECT a FROM Artikel a");
-        
+
+
+        System.out.println("q: " + q);
+
         List<Artikel> sortiment = q.getResultList();
-        
+
+        em.close();
+        emf.close();
+
         return sortiment;
     }
 }    

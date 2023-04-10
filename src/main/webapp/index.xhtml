@@ -1,24 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      >
+<h:body>
+
+    <h1>Artikelverwaltung</h1>
+    <h2>Übersicht über alle Artikel</h2>
+
+    <h:dataTable var="artikel" value="#{shop.sortiment}"
+                 styleClass="artikel" rowClasses="ungerade, gerade"
     >
-    
-    <h:body>
-        
-        <h1>Artikelverwaltung</h1>
-        <h2>Übersicht über alle Artikel</h2>
-        
-          <h:dataTable var="artikel" value="#{shop.sortiment}"
-                       styleClass="artikel" rowClasses="ungerade, gerade"
-                       >
-            <h:column>
-                <f:facet name="header">Product</f:facet>
-                <h:outputText value="#{artikel.artName}"></h:outputText>
-            </h:column>
-            
-          </h:dataTable>
-        
-    </h:body>
-          
+        <h:column>
+            <f:facet name="header">Product</f:facet>
+            <h:outputText value="#{artikel.artName}" />
+        </h:column>
+    </h:dataTable>
+
+    <h4>Categories: </h4>
+    <ui:repeat var="category" value="#{shop.sortiment}">
+        <h:outputText value="#{category.artName}" />
+    </ui:repeat>
+
+
+</h:body>
+
 </html>
